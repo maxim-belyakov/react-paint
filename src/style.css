@@ -107,8 +107,8 @@ html {
     color: black;
     padding: 5px;
   }
-  .window-size.hidden {
+  /* .window-size.hidden {
     opacity: 0;
     transition: 1s;
-  }
+  } */
   
