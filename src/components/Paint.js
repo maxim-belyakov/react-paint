@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Name from './Name'
 import Canvas from './Canvas'
 import ColorPicker from './ColorPicker'
@@ -17,11 +17,15 @@ export default function Paint() {
       setActiveColor(res.colors[0].hex.value)
     })
   }
-  useEffect(getColors, [])
+  useEffect(() => {
+    getColors
+  }, [])
+  
+  const headerRef = useRef({ offsetHeight: 0 })
   
   return (
     <div className="app">
-      <header style={{ borderTop: `10px solid ${activeColor}` }}>
+      <header ref={headerRef} style={{ borderTop: `10px solid ${activeColor}` }}>
         <div>
           <Name />
         </div>
@@ -36,7 +40,7 @@ export default function Paint() {
       {activeColor && (
         <Canvas
           color={activeColor}
-          height={window.innerHeight}
+          height={window.innerHeight - headerRef.current.offsetHeight}
         />
       )}
       <WindowSize />
