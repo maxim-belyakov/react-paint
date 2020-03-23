@@ -1,9 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 function NewCanvas(props) {
   const [drawing, setDrawing] = useState(false)
   const [width, setWidth] = useState(window.innerWidth)
   const [height, setHeight] = useState(window.innerHeight)
+  
+  const canvasRef = useRef()
+  const ctx = useRef()
+  
+  return <canvas
+    ref={canvasRef}
+    width={props.width || state.width}
+    height={props.height || state.height}
+    onMouseDown={startDrawing}
+    onMouseUp={stopDrawing}
+    onMouseOut={stopDrawing}
+    onMouseMove={handleMouseMove}
+  />
 }
 
 export default class Canvas extends React.Component {
