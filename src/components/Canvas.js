@@ -1,4 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+function NewCanvas(props) {
+  const [drawing, setDrawing] = useState(false)
+  const [width, setWidth] = useState(window.innerWidth)
+  const [height, setHeight] = useState(window.innerHeight)
+}
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -10,6 +16,7 @@ export default class Canvas extends React.Component {
     this.stopDrawing = this.stopDrawing.bind(this)
     this.state = {
       drawing: false,
+      height: window.innerHeight,
       width: window.innerWidth
     }
   }
