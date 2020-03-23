@@ -5,4 +5,4 @@ import Playground from './Playground'
 
 import './style.css'
 
-ReactDOM.render(<Playground />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById("root"))

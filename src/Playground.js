@@ -1,32 +1,24 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import randomColor from 'randomcolor'
 
 export default function Playground() {
-  const initialState = {count: 0};
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'increment':
-        return {count: state.count + 1};
-      case 'decrement':
-        return {count: state.count - 1};
-      default:
-        throw new Error();
-    }
-  }
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-    return (
-      <>
-        Count: {state.count}
-        <button onClick={() => dispatch({type: 'decrement'})}>-</button>
-        <button onClick={() => dispatch({type: 'increment'})}>+</button>
-      </>
-    );
+  const [count, setCount] = useState(30)
+  
+  const inputRef = useRef()
+  
+  const [color, setColor] = useState(null)
+  useEffect(() => {
+    setColor(randomColor())
+    inputRef.current.focus()
+  }, [count])
+  
+  return (
+    <div style={{ borderTop: `10px solid ${color}`}}>
+      {count}
+      <button onClick={() => setCount(currentCount => currentCount - 1)}>-</button>
+      <button onClick={() => setCount(currentCount => currentCount + 1)}>+</button>
+      <hr />
+      <input ref={inputRef} type="range" onChange={e => setCount(e.target.value)} value={count} />
+    </div>
+  )
 }
-
-const Calculate = React.memo(({ cb, num }) => {
-  cb(num)
-  const renderCount = useRef(1)
-  return <div>{renderCount.current++}</div>
-})
