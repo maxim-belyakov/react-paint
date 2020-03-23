@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import useWindowSize from './WindowSize'
 
 function NewCanvas(props) {
   const [drawing, setDrawing] = useState(false)
@@ -7,6 +8,11 @@ function NewCanvas(props) {
   
   const canvasRef = useRef()
   const ctx = useRef()
+  
+  const [windowWidth, windowHeight] = useWindowSize(() => {
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+  })
   
   return <canvas
     ref={canvasRef}
